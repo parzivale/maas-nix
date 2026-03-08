@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   # --------------------------------------------------------------------------
   # Cloud-init — MAAS datasource
   # --------------------------------------------------------------------------
@@ -8,7 +11,7 @@
     enable = true;
     network.enable = true;
     settings = {
-      datasource_list = [ "MAAS" ];
+      datasource_list = ["MAAS"];
       datasource = {
         MAAS = {
           metadata_url = "http://maas.internal/MAAS/metadata/";
@@ -63,12 +66,12 @@
         default_user = {
           name = "nixos";
           lock_passwd = true;
-          sudo = [ "ALL=(ALL) NOPASSWD:ALL" ];
+          sudo = ["ALL=(ALL) NOPASSWD:ALL"];
           shell = "/run/current-system/sw/bin/bash";
         };
       };
 
-      network.renderers = [ "networkd" ];
+      network.renderers = ["networkd"];
       manage_etc_hosts = true;
       preserve_hostname = false;
     };
@@ -81,9 +84,9 @@
       maas:
         type: webhook
         endpoint: http://maas.internal/MAAS/metadata/status/{instance_id}
-        consumer_key: ''
-        token_key: ''
-        token_secret: ''
+        consumer_key: ""
+        token_key: ""
+        token_secret: ""
   '';
 
   # Curtin hooks stub — MAAS uses curtin for disk layout
