@@ -14,16 +14,14 @@
     diskSize = "auto";
     additionalSpace = "1G";
     format = "raw";
-    partitionTableType = "msdos";
+    partitionTableType = "efi";
   };
 
   # --------------------------------------------------------------------------
-  # Boot
+  # Boot — EFI
   # --------------------------------------------------------------------------
-  boot.loader.grub = {
-    enable = true;
-    device = "nodev";  # make-disk-image handles this
-  };
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   boot.growPartition = true;
 
@@ -42,6 +40,11 @@
     device = "/dev/disk/by-label/nixos";
     fsType = "ext4";
     autoResize = true;
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/ESP";
+    fsType = "vfat";
   };
 
   boot.initrd.availableKernelModules = [
