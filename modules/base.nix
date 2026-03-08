@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   # --------------------------------------------------------------------------
   # SSH
   # --------------------------------------------------------------------------
@@ -17,15 +20,14 @@
   # --------------------------------------------------------------------------
   environment.systemPackages = with pkgs; [
     cloud-init
-    curtin
     python3
     curl
     vim
     git
     htop
-    dmidecode    # MAAS hardware inventory
-    ipmitool     # BMC management
-    lshw         # hardware enumeration
+    dmidecode # MAAS hardware inventory
+    ipmitool # BMC management
+    lshw # hardware enumeration
   ];
 
   # --------------------------------------------------------------------------
@@ -33,7 +35,7 @@
   # --------------------------------------------------------------------------
   users.users.nixos = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     shell = pkgs.bash;
   };
 
