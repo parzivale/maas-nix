@@ -27,7 +27,6 @@
       # Symlink the system profile
       mkdir -p rootfs/nix/var/nix/profiles
       ln -s ${config.system.build.toplevel} rootfs/nix/var/nix/profiles/system
-      ln -s /nix/var/nix/profiles/system rootfs/run/current-system
 
       # Set up init so the system can boot
       ln -s ${config.system.build.toplevel}/init rootfs/sbin/init
